@@ -15,7 +15,18 @@ data(gala)
 plot(Elevation ~ Species, data= gala)
 (mod <- lm(Elevation ~ Species, data= gala))
 abline(mod, col ="red", lty ="dotted") #plotting our linear regression model
+
 (sum.mod <- summary(mod))
+#we can see that our linear is fairly good; the R^2 is 0.54 
+#we also can see that the model is valid the p value of B1 is 3.177e-06, 
+#so H0 B1 = 0 is refuted by any reasonable standard 
+
+#we also can figure out that B0 is not as essential as B1 as it's pvalue is only 0.0486 
+#so it wouldn't pass an CI(0.01)
+
+plot(residuals(mod) ~ predict.lm(mod))
+# no real trend can be established by this graph so let's continue with the analysis
+
 
 
 # let's built point-wise CI and PI bands

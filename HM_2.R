@@ -30,6 +30,8 @@ plot(residuals(mod) ~ predict.lm(mod))
 
 
 # let's built point-wise CI and PI bands
+plot(Elevation ~ Species, data= gala)
+abline(mod, col ="red", lty ="dotted") #plotting our linear regression model
 new.x <- data.frame(seq(0,400))
 colnames(new.x)<- "Species"
 
@@ -39,7 +41,8 @@ new.y.ip <- predict.lm(mod , new.x, interval = "prediction")
 
 matlines(new.x$Species, new.y.ic[,2:3], lty= "dashed" , col = "green")
 matlines(new.x$Species, new.y.ip[,2:3], lty= "dashed" , col = "blue")
-
-
+legend(0,1500 ,  c("IC", "IP"),
+       lwd=2,lty= c("dashed","dashed"), col=c("green","blue"), bty="n", cex=1)
+# as we expect the IP bands are wider than the IC bands
 
 

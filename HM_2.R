@@ -18,6 +18,17 @@ abline(mod, col ="red", lty ="dotted") #plotting our linear regression model
 (sum.mod <- summary(mod))
 
 
+# let's built point-wise CI and PI bands
+new.x <- data.frame(seq(0,400))
+colnames(new.x)<- "Species"
+
+new.y.ic <- predict.lm(mod , new.x, interval = "confidence")
+new.y.ip <- predict.lm(mod , new.x, interval = "prediction")
+
+
+matlines(new.x$Species, new.y.ic[,2:3], lty= "dashed" , col = "green")
+matlines(new.x$Species, new.y.ip[,2:3], lty= "dashed" , col = "blue")
+
 
 
 
